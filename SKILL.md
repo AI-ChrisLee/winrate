@@ -26,7 +26,7 @@ One mode. A run on any other day reads the same week; the row carries the date o
 
 | Beat | Mode |
 |---|---|
-| 0 THE SOURCES | AUTO: the roots file, the content log, the pipeline, the sheet when the roots file names one (read through the Google Sheets connector, else HUMAN INPUT: the Warm and Cold rows pasted), Stripe when this is Chris's copy |
+| 0 THE SOURCES | AUTO: the roots file, the content log, the pipeline, the sheet when the roots file names one (read with the Google Drive connector, else HUMAN INPUT: the Warm and Cold rows pasted), Stripe when this is Chris's copy |
 | 1 THE VIEWS | HUMAN INPUT: the 7-day views of the newest piece 8 or more days old, read off YouTube Studio and pasted. **STOP** until it lands. No such piece yet: no stop, the brief prints `held`. |
 | 2 THE BRIEF | AUTO: one screen printed, then **STOP · GATE: the Improve line, typed by the founder** |
 | 3 THE ROW | HUMAN INPUT: the Improve line and the yes; then AUTO: one row under `## Sundays` in the content log |
@@ -64,9 +64,14 @@ example.
 | 4 | the views | YouTube Studio, the founder's own eyes | beat 1 |
 | 5 | Stripe, optional | the Stripe connector, Chris's copy only; skipped when absent, one line says so | sales cleared this week. The first payment is the sale; a renewal never is; a refund subtracts from the sale it refunds |
 
-**The sheet.** When the Google Sheets connector is connected, read the two tabs. When it
-is not, ask for the Warm and Cold rows pasted in, and read those. A person on both the
-sheet and the pipeline counts once, by name.
+**The sheet.** Read it with the Google Drive connector, `read_file_content` on the file id
+in the roots file's `outreach sheet` row. That returns every tab as text, Warm and Cold
+included, which is all this read needs. When Drive is not connected, ask for the Warm and
+Cold rows pasted in, and read those. A person on both the sheet and the pipeline counts
+once, by name.
+
+Drive can read the sheet and cannot write a cell, so the Status and Revenue cells are the
+founder's own hand, always. Never tell them a connector will fill those in.
 
 **The week** is Monday to this Sunday. The clock is the roots file's `timezone` row, else
 the laptop's. "This week" means dated inside those seven days.
